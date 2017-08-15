@@ -10,7 +10,7 @@ $ npm install
 
 ## Using
 
-```
+```js
 const JudyArray = require('judy-revisited');
 
 let array = new JudyArray(size, depth);
@@ -50,7 +50,7 @@ _Returns:_ `array` of `keys`
 
 Current size of the store:
 
-```
+```json
 {
   "memoryAllocated": 1024,
   "keyCount": 64
