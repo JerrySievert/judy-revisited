@@ -1,0 +1,20 @@
+{
+  "name": "judy-revisited",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "tape test/**.js",
+    "install": "node-gyp rebuild"
+  },
+  "author": "Jerry Sievert <code@legitimatesounding.com>",
+  "license": "ISC",
+  "gypfile": true,
+  "dependencies": {
+  },
+  "devDependencies": {
+    "tape": "^4.8.0",
+    "benchmark": "^2.1.2",
+    "microtime": "^2.1.2"
+  }
+}
