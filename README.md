@@ -2,6 +2,12 @@
 
 Revisiting an old friend, Judy Arrays in node.js.
 
+## Installing
+
+```
+$ npm install judy-revisited
+```
+
 ## Building
 
 ```
