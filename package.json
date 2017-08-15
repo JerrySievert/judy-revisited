@@ -1,13 +1,23 @@
 {
   "name": "judy-revisited",
   "version": "1.0.0",
-  "description": "",
+  "description": "Judy Arrays",
   "main": "index.js",
   "scripts": {
     "test": "tape test/**.js",
     "install": "node-gyp rebuild"
   },
   "author": "Jerry Sievert <code@legitimatesounding.com>",
+  "homepage": "https://github.com/JerrySievert/judy-revisited",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JerrySievert/judy-revisited.git"
+  },
+  "keywords": [
+    "judy",
+    "array",
+    "judyarray"
+  ],
   "license": "ISC",
   "gypfile": true,
   "dependencies": {
