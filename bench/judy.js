@@ -5,6 +5,10 @@ var multiplier = 1;
 
 var judy = require('../build/Release/JudyArray');
 
+function Exception (message) {
+  this.message = message;
+}
+
 // add tests
 suite.add('Judy#Inserts#' + count, function () {
   var arr = new judy.JudyArray();

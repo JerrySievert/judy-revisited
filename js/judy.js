@@ -18,11 +18,11 @@ JudyArray.prototype.set = function set (key, value) {
   jg_set(this.array, key, value, value.length);
 };
 
-JudyArray.delete = function del (key) {
+JudyArray.prototype.delete = function del (key) {
   jg_delete(this.array, key);
 };
 
-JudyArray.close = function (close) {
+JudyArray.prototype.close = function (close) {
   jg_close(this.array);
 };
 

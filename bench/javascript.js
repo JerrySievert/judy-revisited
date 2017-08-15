@@ -3,75 +3,79 @@ var suite = new Benchmark.Suite();
 var count = 1000;
 var multiplier = 1;
 
-var judy = require('../javascript/judy');
+var judy = require('../js/judy');
+
+function Exception (message) {
+  this.message = message;
+}
 
 // add tests
 suite.add('Judy#Inserts#' + count, function () {
-  var arr = judy.jg_init(1024, 0);
+  var arr = new judy(1024, 0);
 
   for (var i = 0; i < count; i += 1) {
     var value = randomString(i * multiplier);
-    judy.jg_set(arr, 'key: ' + i, val, value.length);
+    arr.set('key: ' + i, value);
   }
-  judy.jg_close(arr);
+  arr.close();
 });
 
 suite.add('Judy#Retrieves#' + count, function () {
-  var arr = judy.jg_init(1024, 0);
+  var arr = new judy(1024, 0);
 
   for (var i = 0; i < count; i += 1) {
     var value = randomString(i * multiplier);
-    judy.jg_set(arr, 'key: ' + i, value, value.length);
-    var key = judy.jg_get(arr, 'key: ' + i);
+    arr.set('key: ' + i, value);
+    var key = arr.get('key: ' + i);
     if (key !== value) {
-      throw new Exception('Incorrect');
+      throw new Exception('Incorrect, expected \"' + value + '\", got \"' + key + '\" for key \"key: ' + i + '\"');
     }
   }
-  judy.jg_close(arr);
+  arr.close();
 });
 
 suite.add('Judy#RandomRetrieves#' + count, function () {
-  var arr = judy.jg_init(1024, 0);
+  var arr = new judy(1024, 0);
 
   for (var i = 0; i < count; i += 1) {
     var value = randomString(i * multiplier);
-    judy.jg_set(arr, 'key: ' + i, value, value.length);
+    arr.set('key: ' + i, value);
   }
 
   for (i = 0; i < count; i += 1) {
     var key = 'key: ' + Math.floor(Math.random() * count);
-    var val = judy.jg_get(arr, key);
+    var val = arr.get(key);
   }
-  judy.jg_close(arr);
+  arr.close();
 });
 
 suite.add('Judy#Misses#' + count, function () {
-  var arr = judy.jg_init(1024, 0);
+  var arr = new judy(1024, 0);
   for (var i = 0; i < count; i += 1) {
     var value = randomString(i * multiplier);
-    judy.set(arr, 'key: ' + i, value, value.length);
-    var key = judy.get(arr, value);
-    if (key !== undefined) {
+    arr.set('key: ' + i, value);
+    var key = arr.get(value);
+    if (key !== '') {
       throw new Exception('Incorrect');
     }
   }
-  judy.jg_close(arr);
+  arr.close();
 });
 
 suite.add('Judy#Deletes#' + count, function () {
-  var arr = judy.jg_init(1024, 0);
+  var arr = new judy(1024, 0);
 
   for (var i = 0; i < count; i += 1) {
     var value = randomString(i * multiplier);
-    judy.set(arr, 'key: ' + i, value, value.length);
-    judy.delete(arr, 'key: ' + i);
+    arr.set('key: ' + i, value);
+    arr.delete('key: ' + i);
   }
-  judy.jg_close(arr);
+  arr.close();
 });
 
 suite.add('Judy#News#' + count, function () {
-  var arr = judy.jg_init(1024, 0);
-  judy.jg_close(arr);
+  var arr = new judy(1024, 0);
+  arr.close();
 });
 
 suite.on('cycle', function (bench) { // add listeners

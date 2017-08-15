@@ -3,6 +3,10 @@ var suite = new Benchmark.Suite();
 var count = 1000;
 var multiplier = 1;
 
+function Exception (message) {
+  this.message = message;
+}
+
 // add tests
 suite.add('Native#Inserts#' + count, function () {
   var arr = {};
